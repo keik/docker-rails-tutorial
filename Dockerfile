@@ -1,16 +1,13 @@
 FROM ruby:2.6
 
-ENV APP_ROOT /myapp
+# temporary
+RUN apt-get update -qq && apt-get install -y nodejs
+# TODO: use version in .nvmrc like:
+# RUN curl -s -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | sh \
+#     && . ~/.profile; nvm install
 
-WORKDIR $APP_ROOT
-
-ADD . /myapp
-
-RUN bundle install -j 4 --path /bundle
-
-RUN curl -s -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | sh \
-    && . ~/.profile; nvm install
+RUN mkdir /app
+WORKDIR /app
+ADD . /app
 
 EXPOSE 3000
-
-CMD ./envwrapper bin/rails s -b 0.0.0.0
