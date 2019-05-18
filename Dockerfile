@@ -1,13 +1,13 @@
 FROM ruby:2.6
 
-# temporary
-RUN apt-get update -qq && apt-get install -y nodejs
-# TODO: use version in .nvmrc like:
-# RUN curl -s -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | sh \
-#     && . ~/.profile; nvm install
-
 RUN mkdir /app
 WORKDIR /app
 ADD . /app
+
+RUN git clone https://github.com/nodenv/nodenv.git ~/.nodenv \
+    && git clone https://github.com/nodenv/node-build.git "$(~/.nodenv/bin/nodenv root)"/plugins/node-build \
+    && ~/.nodenv/bin/nodenv install
+
+ENV PATH=$PATH:/root/.nodenv/shims
 
 EXPOSE 3000
