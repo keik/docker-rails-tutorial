@@ -6,7 +6,7 @@ WORKDIR $APP_ROOT
 
 ADD . /myapp
 
-RUN bundle install
+RUN bundle install -j 4 --path /bundle
 
 RUN curl -s -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | sh \
     && . ~/.profile; nvm install

@@ -6,4 +6,9 @@ services:
      - "3000:3000"
     volumes:
      - .:/myapp
+     - bundle:/bundle
     tty: true
+
+volumes:
+  bundle:
+    driver: local
