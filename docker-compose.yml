@@ -5,7 +5,7 @@ volumes:
 services:
   web:
     build: .
-    command: bundle exec rails server -p 3000 -b '0.0.0.0'
+    command: rails server -p 3000 -b '0.0.0.0'
     ports:
      - "3000:3000"
     volumes:
@@ -20,9 +20,9 @@ services:
       - spring
   spring:
     build: .
-    command: bundle exec spring server
+    command: spring server
     volumes:
-      - .:/myapp
+      - .:/app
       - bundle_cache:/usr/local/bundle
     environment:
       - SPRING_TMP_PATH=tmp
