@@ -1,6 +1,10 @@
 # docker-rails-tutorial
 
-Example of Spring integration in Docker container.
+Example of Dockerized Rails app which contains following:
+
+* Use Docker as development environment, no need to install Ruby and Node on your host.
+* No duplicated configurations of environment definitions.
+* Integrate Spring with RSpec and other stuffs.
 
 ## Start Rails server
 
