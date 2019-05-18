@@ -1,24 +1,19 @@
-# README
+# docker-rails-tutorial
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Example of Spring integration in Docker container.
 
-Things you may want to cover:
+## Start Rails server
 
-* Ruby version
+```
+docker-compose up -d
+```
 
-* System dependencies
+then open http://localhost:3000
 
-* Configuration
+## Run RSpec
 
-* Database creation
+```
+docker-compose run --rm web bin/rspec
+```
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+then RSpec will run with Spring integration.
