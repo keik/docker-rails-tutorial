@@ -1,0 +1,30 @@
+version: '2'
+volumes:
+  bundle_cache:
+    driver: local
+services:
+  web:
+    build: .
+    command: bundle exec rails server -p 3000 -b '0.0.0.0'
+    ports:
+     - "3000:3000"
+    volumes:
+     - .:/app
+     - bundle_cache:/usr/local/bundle
+    tty: true
+    environment:
+      - SPRING_TMP_PATH=tmp
+      - SPRING_SOCKET=tmp/spring.sock
+      - SPRING_PIDFILE=tmp/spring.pid
+    depends_on:
+      - spring
+  spring:
+    build: .
+    command: bundle exec spring server
+    volumes:
+      - .:/myapp
+      - bundle_cache:/usr/local/bundle
+    environment:
+      - SPRING_TMP_PATH=tmp
+      - SPRING_SOCKET=tmp/spring.sock
+      - SPRING_PIDFILE=tmp/spring.pid
